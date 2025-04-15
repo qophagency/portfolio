@@ -73,34 +73,37 @@ export default async function Page({ params: { locale } }: LandingPageProps) {
   }
 
   return (
-    <TranslationsProvider locale={locale} resources={resources}>
-      <Container>
-        <Hero
-          title="criando experiências que conectam, comovem e cativam"
-          description="desde 2018 ajudando marcas a criarem e validarem produtos inovadores e acessíveis"
-        />
-      </Container>
+    <>
+      {/* @ts-ignore */}
+      <TranslationsProvider locale={locale} resources={resources}>
+        <Container>
+          <Hero
+            title="criando experiências que conectam, comovem e cativam"
+            description="desde 2018 ajudando marcas a criarem e validarem produtos inovadores e acessíveis"
+          />
+        </Container>
 
-      {/* Tutorial: contentful-and-the-starter-template.md */}
-      {/* Uncomment the line below to make the Greeting field available to render */}
-      {/*<Container>*/}
-      {/*  <div className="my-5 bg-colorTextLightest p-5 text-colorBlueLightest">{page.greeting}</div>*/}
-      {/*</Container>*/}
+        {/* Tutorial: contentful-and-the-starter-template.md */}
+        {/* Uncomment the line below to make the Greeting field available to render */}
+        {/*<Container>*/}
+        {/*  <div className="my-5 bg-colorTextLightest p-5 text-colorBlueLightest">{page.greeting}</div>*/}
+        {/*</Container>*/}
 
-      <Container className="my-8  max-w-screen-xl items-center justify-center md:mb-10 lg:mb-16">
-        <div className="flex w-full items-center justify-center py-8">
-          <h2 className="mb-4 text-4xl md:mb-6">{t('landingPage.latestArticles')}</h2>
-        </div>
-        <ArticleTileGrid
-          className="gap-x-8 gap-y-24 md:grid-cols-2 lg:grid-cols-2"
-          articles={posts}
-        />
-      </Container>
-      <Container>
-        <Link href={`/${page.featuredBlogPost.slug}`}>
-          <ArticleHero article={page.featuredBlogPost} />
-        </Link>
-      </Container>
-    </TranslationsProvider>
+        <Container className="my-8  max-w-screen-xl items-center justify-center md:mb-10 lg:mb-16">
+          <div className="flex w-full items-center justify-center py-8">
+            <h2 className="mb-4 text-4xl md:mb-6">{t('landingPage.latestArticles')}</h2>
+          </div>
+          <ArticleTileGrid
+            className="gap-x-8 gap-y-24 md:grid-cols-2 lg:grid-cols-2"
+            articles={posts}
+          />
+        </Container>
+        <Container>
+          <Link href={`/${page.featuredBlogPost.slug}`}>
+            <ArticleHero article={page.featuredBlogPost} />
+          </Link>
+        </Container>
+      </TranslationsProvider>
+    </>
   );
 }

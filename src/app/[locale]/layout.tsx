@@ -48,6 +48,7 @@ export default async function PageLayout({ children, params }: LayoutProps) {
       </head>
 
       <body>
+        {/* @ts-ignore */}
         <TranslationsProvider locale={locale} resources={resources}>
           <ContentfulPreviewProvider
             locale={locale}

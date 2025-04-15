@@ -11,9 +11,10 @@ export const Portal = ({ children, id = 'portal' }: PortalProps) => {
 
   useEffect(() => {
     setMounted(true);
-
     return () => setMounted(false);
   }, []);
 
-  return mounted ? createPortal(children, document.querySelector(`#${id}`) || document.body) : null;
+  return mounted
+    ? createPortal(children as any, document.querySelector(`#${id}`) || document.body)
+    : null;
 };

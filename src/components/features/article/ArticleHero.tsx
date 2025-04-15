@@ -49,7 +49,7 @@ export const ArticleHero = ({
         )}
       </div>
 
-      <div className="relative mx-auto flex max-w-screen-lg flex-1 basis-1/2 flex-col justify-center py-6 px-4 lg:py-12">
+      <div className="relative mx-auto flex max-w-screen-lg flex-1 basis-1/2 flex-col justify-center px-4 py-6 lg:py-12">
         <div className="mt-8">
           <h1 {...inspectorProps({ fieldId: 'title' })}>{title}</h1>
           {shortDescription && (
@@ -67,14 +67,17 @@ export const ArticleHero = ({
         <div className="mb-2 mt-8 flex flex-wrap items-center">
           <ArticleAuthor article={article} />
           {isFeatured && (
-            <ArticleLabel
-              className={twMerge(
-                'ml-auto bg-neutral-700 pl-2 lg:absolute lg:top-8 xl:top-12',
-                isReversedLayout ? 'lg:left-6 xl:left-12' : 'lg:right-6 xl:right-12',
-              )}
-            >
-              {t('article.featured')}
-            </ArticleLabel>
+            <>
+              {/* @ts-ignore */}
+              <ArticleLabel
+                className={twMerge(
+                  'ml-auto bg-neutral-700 pl-2 lg:absolute lg:top-8 xl:top-12',
+                  isReversedLayout ? 'lg:left-6 xl:left-12' : 'lg:right-6 xl:right-12',
+                )}
+              >
+                {t('article.featured')}
+              </ArticleLabel>
+            </>
           )}
           <div
             className={twMerge(
