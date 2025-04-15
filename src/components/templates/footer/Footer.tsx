@@ -9,21 +9,28 @@ export const Footer = () => {
   const { t } = useTranslation();
 
   return (
-    <footer className="border-t-color mt-10 border-t border-gray200">
-      <Container className="py-8">
-        <h2 className="h4 mb-4">{t('footer.aboutUs')}</h2>
-        <div className="max-w-4xl">{t('footer.description')}</div>
-        <div className="mt-8">
+    <footer className="my-10 w-full">
+      <Container className="w-full rounded-3xl bg-neutral-200 p-16">
+        <div className="flex flex-row items-center justify-between gap-24">
+          <div className="max-w-xl">
+            <h2 className="h4 mb-4 text-6xl">{t('footer.aboutUs')}</h2>
+            {/* <div className="max-w-4xl">{t('footer.description')}</div> */}
+          </div>
+          <button className="rounded-xl border border-brand-primary-500 py-4 px-8 text-2xl font-medium hover:bg-brand-primary-25 hover:text-brand-primary-600">
+            contato
+          </button>
+        </div>
+        {/* <div className="mt-8 bodySecondary">
           {t('footer.powerBy')}{' '}
           <Link
-            href="https://www.contentful.com"
+            href="https://www.ryendelrocha.com"
             rel="noopener noreferrer"
             target="_blank"
-            className="text-blue500"
+            className="text-brand-primary-600"
           >
-            Contentful
+            Ryendel
           </Link>
-        </div>
+        </div> */}
       </Container>
     </footer>
   );
