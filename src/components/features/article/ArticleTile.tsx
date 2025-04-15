@@ -27,19 +27,24 @@ export const ArticleTile = ({ article, className }: ArticleTileProps) => {
         {featuredImage && (
           <div {...inspectorProps({ fieldId: 'featuredImage' })}>
             <CtfImage
-              nextImageProps={{ className: 'object-cover aspect-[2/1] w-full rounded-2xl' }}
+              nextImageProps={{ className: 'object-cover w-full rounded-3xl' }}
               {...featuredImage}
             />
           </div>
         )}
         <div className="flex flex-1 flex-col p-2">
           {title && (
-            <p className="h3 mb-2 text-gray800 md:mb-3" {...inspectorProps({ fieldId: 'title' })}>
-              {title}
+            <p className="h3 mb-4 text-2xl md:mb-3" {...inspectorProps({ fieldId: 'title' })}>
+              {/* Parte antes do ":" */}
+              <span className="text-gray-800">{title.split(':')[0]}</span>
+              {/* Coloca ":" se existir */}
+              {title.includes(':') && ':'}
+              {/* Parte após o ":" */}
+              {title.includes(':') && <span className="text-gray-500">{title.split(':')[1]}</span>}
             </p>
           )}
 
-          <div className="mt-auto flex items-center">
+          {/* <div className="mt-auto flex items-center">
             <ArticleAuthor article={article} />
             <div
               className={twMerge('bodyTertiary textSubtle ml-auto pl-2')}
@@ -47,7 +52,7 @@ export const ArticleTile = ({ article, className }: ArticleTileProps) => {
             >
               <FormatDate date={publishedDate} />
             </div>
-          </div>
+          </div> */}
         </div>
       </div>
     </Link>

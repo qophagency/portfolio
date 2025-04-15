@@ -32,7 +32,7 @@ export const ArticleHero = ({
   return (
     <div
       className={twMerge(
-        `flex flex-col overflow-hidden `,
+        `mx-auto flex max-w-screen-xl flex-col overflow-hidden`,
         isReversedLayout ? 'mx-auto max-w-screen-lg lg:flex-col-reverse' : 'lg:flex-row',
       )}
     >

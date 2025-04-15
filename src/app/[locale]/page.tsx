@@ -10,6 +10,7 @@ import initTranslations from '@src/i18n';
 import { defaultLocale, locales } from '@src/i18n/config';
 import { PageBlogPostOrder } from '@src/lib/__generated/sdk';
 import { client, previewClient } from '@src/lib/client';
+import { Hero } from '@src/components/atomic/hero/hero';
 
 interface LandingPageProps {
   params: {
@@ -74,9 +75,10 @@ export default async function Page({ params: { locale } }: LandingPageProps) {
   return (
     <TranslationsProvider locale={locale} resources={resources}>
       <Container>
-        <Link href={`/${page.featuredBlogPost.slug}`}>
-          <ArticleHero article={page.featuredBlogPost} />
-        </Link>
+        <Hero
+          title="criando experiências que conectam, comovem e cativam"
+          description="desde 2018 ajudando marcas a criarem e validarem produtos inovadores e acessíveis"
+        />
       </Container>
 
       {/* Tutorial: contentful-and-the-starter-template.md */}
@@ -85,9 +87,19 @@ export default async function Page({ params: { locale } }: LandingPageProps) {
       {/*  <div className="my-5 bg-colorTextLightest p-5 text-colorBlueLightest">{page.greeting}</div>*/}
       {/*</Container>*/}
 
-      <Container className="my-8  md:mb-10 lg:mb-16">
-        <h2 className="mb-4 md:mb-6">{t('landingPage.latestArticles')}</h2>
-        <ArticleTileGrid className="md:grid-cols-2 lg:grid-cols-3" articles={posts} />
+      <Container className="my-8  max-w-screen-xl items-center justify-center md:mb-10 lg:mb-16">
+        <div className="flex w-full items-center justify-center py-8">
+          <h2 className="mb-4 text-4xl md:mb-6">{t('landingPage.latestArticles')}</h2>
+        </div>
+        <ArticleTileGrid
+          className="gap-x-8 gap-y-24 md:grid-cols-2 lg:grid-cols-2"
+          articles={posts}
+        />
+      </Container>
+      <Container>
+        <Link href={`/${page.featuredBlogPost.slug}`}>
+          <ArticleHero article={page.featuredBlogPost} />
+        </Link>
       </Container>
     </TranslationsProvider>
   );
