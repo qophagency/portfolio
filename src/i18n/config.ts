@@ -1,5 +1,5 @@
-export const defaultLocale = 'en-US';
-export const locales = [defaultLocale, 'de-DE'];
+export const defaultLocale = 'pt-BR';
+export const locales = [defaultLocale, 'en-US'];
 
 export default {
   locales,

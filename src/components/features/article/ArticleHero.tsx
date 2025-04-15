@@ -59,7 +59,7 @@ export const ArticleHero = ({
           )}
         </div>
         <div
-          className={twMerge('nodyTertiary textSubtle mt-2', isReversedLayout ? 'lg:hidden' : '')}
+          className={twMerge('bodySecondary textSubtle mt-2', isReversedLayout ? 'lg:hidden' : '')}
           {...inspectorProps({ fieldId: 'publishedDate' })}
         >
           <FormatDate date={publishedDate} />
