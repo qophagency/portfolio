@@ -69,7 +69,7 @@ export const ArticleHero = ({
           {isFeatured && (
             <ArticleLabel
               className={twMerge(
-                'ml-auto pl-2 lg:absolute lg:top-8 xl:top-12',
+                'ml-auto bg-neutral-700 pl-2 lg:absolute lg:top-8 xl:top-12',
                 isReversedLayout ? 'lg:left-6 xl:left-12' : 'lg:right-6 xl:right-12',
               )}
             >
