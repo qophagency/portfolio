@@ -88,27 +88,27 @@ export const LanguageSelectorDesktop = ({ localeName, onChange, displayName }) =
   };
 
   return (
-    <div className="relative" ref={containerRef}>
+    <div className="relative items-center justify-center" ref={containerRef}>
       <button
         aria-haspopup="true"
         aria-expanded={isOpen}
         aria-controls="menu-locale"
-        className="flex items-center font-normal uppercase"
+        className="bodyPrimary flex items-center justify-center font-normal uppercase"
         onClick={() => setIsOpen(currentState => !currentState)}
       >
-        <LanguageIcon width="18px" height="18px" variant="secondary" className="mr-1 ml-1" />
+        <LanguageIcon width="24px" height="24px" variant="secondary" className="mr-1 ml-1" />
         {localeName(currentLocale)}
         {isOpen ? (
-          <ChevronUpIcon variant="secondary" className="pl-1" />
+          <ChevronUpIcon variant="primary" className="pl-2" />
         ) : (
-          <ChevronDownIcon variant="secondary" className="pl-1" />
+          <ChevronDownIcon variant="secondary" className="pl-2" />
         )}
       </button>
       <FocusLock disabled={!isOpen} returnFocus={true}>
         <ul
           ref={menuRef}
           className={twMerge(
-            'top-100 absolute right-0 z-10 w-24 translate-y-3 cursor-pointer rounded-md bg-colorWhite text-center text-base shadow',
+            'top-100 bodyPrimary absolute right-0 z-10 w-24 translate-y-3 cursor-pointer rounded-md bg-colorWhite text-center shadow',
             isOpen ? 'block' : 'hidden',
           )}
           id="menu-locale"
@@ -121,7 +121,7 @@ export const LanguageSelectorDesktop = ({ localeName, onChange, displayName }) =
                 <Link
                   onKeyDown={e => handleMenuItemKeydown(e, index)}
                   role="menuitem"
-                  className="block py-2"
+                  className="bodyPrimary block w-auto px-4 py-2 lowercase"
                   href={
                     pathnameHasLocale
                       ? `/${availableLocale}${pathnameWithoutLocale}`
