@@ -10,6 +10,7 @@
   NPM_FLAGS = "--no-package-lock"
   NODE_ENV = "production"
   NEXT_TELEMETRY_DISABLED = "1"
+  NEXT_PUBLIC_VERCEL_URL = "${NEXT_PUBLIC_BASE_URL:-$URL}"
 
 [[plugins]]
   package = "@netlify/plugin-nextjs"
@@ -18,3 +19,4 @@
   from = "/*"
   to = "/index.html"
   status = 200
+  force = true

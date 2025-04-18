@@ -56,11 +56,21 @@ module.exports = withPlugins(plugins, {
     formats: ['image/avif', 'image/webp'],
   },
 
-  webpack(config) {
+  webpack(config, { isServer }) {
     config.module.rules.push({
       test: /\.svg$/,
       use: ['@svgr/webpack'],
     });
+
+    // Configuração para resolver os caminhos de importação
+    config.resolve.alias = {
+      ...config.resolve.alias,
+      '@public': './public',
+      '@src': './src',
+      '@components': './src/components',
+      '@shared': './src/components/shared',
+      '@icons': './public/assets/svg',
+    };
 
     return config;
   },
