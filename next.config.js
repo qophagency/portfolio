@@ -1,5 +1,6 @@
 const dotenv = require('dotenv').config();
 const nextComposePlugins = require('next-compose-plugins');
+const path = require('path');
 
 const headers = require('./config/headers');
 const plugins = require('./config/plugins');
@@ -27,9 +28,7 @@ module.exports = withPlugins(plugins, {
    * like React 18 concurrent features.
    */
   experimental: {
-    // urlImports: true,
-    // concurrentFeatures: true,
-    // serverComponents: true,
+    // Desabilitando recursos experimentais para maior estabilidade
   },
 
   /**
@@ -37,7 +36,7 @@ module.exports = withPlugins(plugins, {
    * Please note that while not in experimental, the swcMinification may cause issues in your build.
    * example: https://github.com/vercel/next.js/issues/30429 (Yup email validation causes an exception)
    */
-  // swcMinify: true,
+  swcMinify: true,
 
   poweredByHeader: false,
   compress: true,
@@ -54,24 +53,36 @@ module.exports = withPlugins(plugins, {
    * Settings are the defaults
    */
   images: {
-    remotePatterns: [
-      {
-        protocol: 'https',
-        hostname: 'images.ctfassets.net',
-      },
-      {
-        protocol: 'https',
-        hostname: 'images.eu.ctfassets.net',
-      },
-    ],
+    domains: ['images.ctfassets.net'],
+    formats: ['image/avif', 'image/webp'],
   },
 
-  webpack(config) {
+  webpack(config, { isServer }) {
     config.module.rules.push({
       test: /\.svg$/,
       use: ['@svgr/webpack'],
     });
 
+    // Configuração para resolver os caminhos de importação
+    config.resolve.alias = {
+      ...config.resolve.alias,
+      '@public': path.resolve(__dirname, 'public'),
+      '@src': path.resolve(__dirname, 'src'),
+      '@components': path.resolve(__dirname, 'src/components'),
+      '@shared': path.resolve(__dirname, 'src/components/shared'),
+      '@icons': path.resolve(__dirname, 'public/assets/svg'),
+    };
+
     return config;
+  },
+
+  // Configurações adicionais para melhor compatibilidade
+  output: 'standalone',
+  reactStrictMode: true,
+
+  // Configurações para exportação estática
+  trailingSlash: true,
+  images: {
+    unoptimized: true,
   },
 });
