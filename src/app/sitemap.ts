@@ -27,12 +27,14 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
             ? {
                 lastModified: item.sys.publishedAt,
                 url,
+                changeFrequency: 'daily' as const,
+                priority: 0.7,
               }
             : undefined;
         }),
       ),
     )
-    .filter(field => field !== undefined);
+    .filter((field): field is MetadataRoute.Sitemap[0] => field !== undefined);
 
   return fields;
 }
