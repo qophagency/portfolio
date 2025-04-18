@@ -1,11 +1,13 @@
 [build]
-  command = "NEXT_PUBLIC_BASE_URL=\"${NEXT_PUBLIC_BASE_URL:-$URL}\" yarn build"
+  command = "yarn install && NEXT_PUBLIC_BASE_URL=\"${NEXT_PUBLIC_BASE_URL:-$URL}\" yarn build"
   publish = ".next"
   functions = ".netlify/functions"
 
 [build.environment]
   NEXT_PUBLIC_BASE_URL = "${NEXT_PUBLIC_BASE_URL:-$URL}"
   NODE_VERSION = "18"
+  YARN_VERSION = "1.22.19"
+  YARN_FLAGS = "--frozen-lockfile"
 
 [[plugins]]
   package = "@netlify/plugin-nextjs"
