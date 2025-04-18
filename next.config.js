@@ -27,9 +27,7 @@ module.exports = withPlugins(plugins, {
    * like React 18 concurrent features.
    */
   experimental: {
-    // urlImports: true,
-    // concurrentFeatures: true,
-    // serverComponents: true,
+    // Desabilitando recursos experimentais para maior estabilidade
   },
 
   /**
@@ -37,7 +35,7 @@ module.exports = withPlugins(plugins, {
    * Please note that while not in experimental, the swcMinification may cause issues in your build.
    * example: https://github.com/vercel/next.js/issues/30429 (Yup email validation causes an exception)
    */
-  // swcMinify: true,
+  swcMinify: true,
 
   poweredByHeader: false,
   compress: true,
@@ -54,16 +52,8 @@ module.exports = withPlugins(plugins, {
    * Settings are the defaults
    */
   images: {
-    remotePatterns: [
-      {
-        protocol: 'https',
-        hostname: 'images.ctfassets.net',
-      },
-      {
-        protocol: 'https',
-        hostname: 'images.eu.ctfassets.net',
-      },
-    ],
+    domains: ['images.ctfassets.net'],
+    formats: ['image/avif', 'image/webp'],
   },
 
   webpack(config) {
@@ -74,4 +64,8 @@ module.exports = withPlugins(plugins, {
 
     return config;
   },
+
+  // Configurações adicionais para melhor compatibilidade
+  output: 'standalone',
+  reactStrictMode: true,
 });
