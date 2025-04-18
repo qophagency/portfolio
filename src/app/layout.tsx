@@ -5,6 +5,6 @@ interface LayoutProps {
   params: { locale: string };
 }
 
-export default async function RootLayout({ children }: LayoutProps) {
+export default function RootLayout({ children }: LayoutProps) {
   return children;
 }
