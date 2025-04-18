@@ -5,7 +5,7 @@
 
 [build.environment]
   NEXT_PUBLIC_BASE_URL = "${NEXT_PUBLIC_BASE_URL:-$URL}"
-  NODE_VERSION = "18"
+  NODE_VERSION = "20"
   YARN_VERSION = "1.22.19"
   YARN_FLAGS = "--frozen-lockfile"
 
