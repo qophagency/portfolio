@@ -5,7 +5,7 @@
     "resolveJsonModule": true,
     "jsx": "preserve",
     "module": "ESNext",
-    "moduleResolution": "Bundler",
+    "moduleResolution": "Node",
     "noEmit": true,
     "preserveConstEnums": true,
     "removeComments": false,
@@ -14,7 +14,7 @@
     "strict": true,
     "noImplicitAny": false,
     "target": "esnext",
-    "baseUrl": "./",
+    "baseUrl": ".",
     "paths": {
       "@public/*": [
         "./public/*"
