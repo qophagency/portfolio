@@ -8,9 +8,7 @@ import Link from 'next/link';
 import { HTMLProps } from 'react';
 import { twMerge } from 'tailwind-merge';
 
-import { ArticleAuthor } from '@src/components/features/article/ArticleAuthor';
 import { CtfImage } from '@src/components/features/contentful';
-import { FormatDate } from '@src/components/shared/format-date';
 import { PageBlogPostFieldsFragment } from '@src/lib/__generated/sdk';
 
 interface ArticleTileProps extends HTMLProps<HTMLDivElement> {
@@ -18,11 +16,11 @@ interface ArticleTileProps extends HTMLProps<HTMLDivElement> {
 }
 
 export const ArticleTile = ({ article, className }: ArticleTileProps) => {
-  const { featuredImage, publishedDate, slug, title } = useContentfulLiveUpdates(article);
+  const { featuredImage, title } = useContentfulLiveUpdates(article);
   const inspectorProps = useContentfulInspectorMode({ entryId: article.sys.id });
 
   return (
-    <Link className="flex flex-col" href={`/${slug}`}>
+    <Link className="flex flex-col" href={`/${article.slug}`}>
       <div className={twMerge('flex flex-1 flex-col overflow-hidden', className)}>
         {featuredImage && (
           <div {...inspectorProps({ fieldId: 'featuredImage' })}>
@@ -43,16 +41,6 @@ export const ArticleTile = ({ article, className }: ArticleTileProps) => {
               {title.includes(':') && <span className="text-gray-500">{title.split(':')[1]}</span>}
             </p>
           )}
-
-          {/* <div className="mt-auto flex items-center">
-            <ArticleAuthor article={article} />
-            <div
-              className={twMerge('bodyTertiary textSubtle ml-auto pl-2')}
-              {...inspectorProps({ fieldId: 'publishedDate' })}
-            >
-              <FormatDate date={publishedDate} />
-            </div>
-          </div> */}
         </div>
       </div>
     </Link>

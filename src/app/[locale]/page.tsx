@@ -3,6 +3,7 @@ import { draftMode } from 'next/headers';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 
+import { Hero } from '@src/components/atomic/hero/hero';
 import { ArticleHero, ArticleTileGrid } from '@src/components/features/article';
 import { Container } from '@src/components/shared/container';
 import TranslationsProvider from '@src/components/shared/i18n/TranslationProvider';
@@ -10,7 +11,6 @@ import initTranslations from '@src/i18n';
 import { defaultLocale, locales } from '@src/i18n/config';
 import { PageBlogPostOrder } from '@src/lib/__generated/sdk';
 import { client, previewClient } from '@src/lib/client';
-import { Hero } from '@src/components/atomic/hero/hero';
 
 interface LandingPageProps {
   params: {
