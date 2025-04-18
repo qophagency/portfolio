@@ -1,22 +1,2 @@
 [build]
-  command = "yarn install && NEXT_PUBLIC_BASE_URL=\"${NEXT_PUBLIC_BASE_URL:-$URL}\" yarn build"
-  publish = ".next"
-  functions = ".netlify/functions"
-
-[build.environment]
-  NEXT_PUBLIC_BASE_URL = "${NEXT_PUBLIC_BASE_URL:-$URL}"
-  NODE_VERSION = "20.11.1"
-  YARN_VERSION = "1.22.19"
-  NPM_FLAGS = "--no-package-lock"
-  NODE_ENV = "production"
-  NEXT_TELEMETRY_DISABLED = "1"
-  NEXT_PUBLIC_VERCEL_URL = "${NEXT_PUBLIC_BASE_URL:-$URL}"
-
-[[plugins]]
-  package = "@netlify/plugin-nextjs"
-
-[[redirects]]
-  from = "/*"
-  to = "/index.html"
-  status = 200
-  force = true
+  command = "NEXT_PUBLIC_BASE_URL=\"${NEXT_PUBLIC_BASE_URL:-$URL}\" yarn build"

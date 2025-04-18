@@ -5,7 +5,7 @@
     "resolveJsonModule": true,
     "jsx": "preserve",
     "module": "ESNext",
-    "moduleResolution": "Node",
+    "moduleResolution": "Bundler",
     "noEmit": true,
     "preserveConstEnums": true,
     "removeComments": false,
@@ -14,19 +14,13 @@
     "strict": true,
     "noImplicitAny": false,
     "target": "esnext",
-    "baseUrl": ".",
+    "baseUrl": "./",
     "paths": {
       "@public/*": [
         "./public/*"
       ],
       "@src/*": [
         "./src/*"
-      ],
-      "@components/*": [
-        "./src/components/*"
-      ],
-      "@shared/*": [
-        "./src/components/shared/*"
       ],
       "@icons/*": [
         "./public/assets/svg/*"
@@ -52,15 +46,12 @@
     ]
   },
   "exclude": [
-    "node_modules",
-    "**/*.test.ts",
-    "**/*.test.tsx",
-    ".next"
+    "node_modules"
   ],
   "include": [
-    "next-env.d.ts",
     "**/*.ts",
     "**/*.tsx",
+    "@types/**/*.d.ts",
     ".next/types/**/*.ts"
   ]
 }
