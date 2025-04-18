@@ -22,6 +22,12 @@
       "@src/*": [
         "./src/*"
       ],
+      "@components/*": [
+        "./src/components/*"
+      ],
+      "@shared/*": [
+        "./src/components/shared/*"
+      ],
       "@icons/*": [
         "./public/assets/svg/*"
       ]
