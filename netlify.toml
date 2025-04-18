@@ -1,5 +1,5 @@
 [build]
-  command = "NEXT_PUBLIC_BASE_URL=\"${NEXT_PUBLIC_BASE_URL:-$URL}\" yarn build"
+  command = "NEXT_PUBLIC_BASE_URL=\"${NEXT_PUBLIC_BASE_URL:-$URL}\" yarn install && yarn build"
   publish = ".next"
   functions = ".netlify/functions"
 
@@ -8,7 +8,7 @@
   NODE_VERSION = "20"
   YARN_VERSION = "1.22.19"
   NPM_FLAGS = "--no-optional"
-  NODE_ENV = "production"
+  NODE_ENV = "development"
   NEXT_TELEMETRY_DISABLED = "1"
 
 [[plugins]]
