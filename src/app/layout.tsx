@@ -1,4 +1,7 @@
 import '@src/app/globals.css';
+import { metadata } from './metadata';
+
+export { metadata };
 
 interface LayoutProps {
   children: React.ReactNode;
