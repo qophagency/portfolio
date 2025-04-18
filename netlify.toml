@@ -5,7 +5,7 @@
 
 [build.environment]
   NEXT_PUBLIC_VERCEL_URL = "${URL}"
-  NODE_VERSION = "18"
+  NODE_VERSION = "20"
   YARN_VERSION = "1.22.19"
   NPM_FLAGS = "--no-optional"
   NODE_ENV = "production"

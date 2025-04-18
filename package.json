@@ -3,11 +3,10 @@
   "version": "0.1.0",
   "private": true,
   "engines": {
-    "node": ">=18",
+    "node": ">=20",
     "npm": "Please use Yarn"
   },
   "scripts": {
-    "prepare": "husky install",
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
