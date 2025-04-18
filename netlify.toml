@@ -7,8 +7,6 @@
   NEXT_PUBLIC_BASE_URL = "${NEXT_PUBLIC_BASE_URL:-$URL}"
   NODE_VERSION = "20"
   YARN_VERSION = "1.22.19"
-  YARN_FLAGS = "--frozen-lockfile"
-  GO_VERSION = "1.21"
 
 [[plugins]]
   package = "@netlify/plugin-nextjs"
