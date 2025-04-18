@@ -11,6 +11,10 @@ import { client, previewClient } from '@src/lib/client';
 export async function generateMetadata({
   params: { locale, slug },
 }: BlogPageProps): Promise<Metadata> {
+  if (!slug) {
+    notFound();
+  }
+
   const { isEnabled: preview } = draftMode();
   const gqlClient = preview ? previewClient : client;
 
@@ -51,14 +55,18 @@ export async function generateStaticParams({
     throw new Error('No blog posts found');
   }
 
-  return pageBlogPostCollection.items
-    .filter((blogPost): blogPost is NonNullable<typeof blogPost> => Boolean(blogPost?.slug))
-    .map(blogPost => {
-      return {
+  const paths: BlogPageProps['params'][] = [];
+
+  for (const item of pageBlogPostCollection.items) {
+    if (item?.slug) {
+      paths.push({
         locale,
-        slug: blogPost.slug!,
-      };
-    });
+        slug: item.slug,
+      });
+    }
+  }
+
+  return paths;
 }
 
 interface BlogPageProps {
@@ -69,6 +77,10 @@ interface BlogPageProps {
 }
 
 export default async function Page({ params: { locale, slug } }: BlogPageProps) {
+  if (!slug) {
+    notFound();
+  }
+
   const { isEnabled: preview } = draftMode();
   const gqlClient = preview ? previewClient : client;
   const { t } = await initTranslations({ locale });
