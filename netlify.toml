@@ -5,8 +5,10 @@
 
 [build.environment]
   NEXT_PUBLIC_BASE_URL = "${NEXT_PUBLIC_BASE_URL:-$URL}"
-  NODE_VERSION = "20"
+  NODE_VERSION = "20.11.1"
   YARN_VERSION = "1.22.19"
+  NPM_FLAGS = "--no-package-lock"
+  NODE_ENV = "production"
 
 [[plugins]]
   package = "@netlify/plugin-nextjs"
