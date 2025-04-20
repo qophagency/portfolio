@@ -154,6 +154,9 @@ module.exports = {
         ".displayPrimary": {
           "@apply font-heading text-4xl md:text-[72px] text-neutrals-900 leading-[1.0] font-medium": {},
         },
+        ".displaySecondary": {
+          "@apply font-heading text-3xl md:text-5xl text-neutrals-900 leading-[1.0] font-medium": {},
+        },
         ".textSubtle": {
           "@apply text-neutrals-600": {},
         },
