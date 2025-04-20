@@ -100,7 +100,7 @@ export default async function Page({ params: { locale, slug } }: BlogPageProps) 
   return (
     <>
       <Container>
-        <ArticleHero article={blogPost} isFeatured={isFeatured} isReversedLayout={true} />
+        <ArticleHero article={blogPost} />
       </Container>
       <Container className="mt-8 max-w-4xl">
         <ArticleContent article={blogPost} />

@@ -1,5 +1,17 @@
 'use client';
 
+/*  --------------------------------------------------------------------------
+    HERO COMPONENTS
+    --------------------------------------------------------------------------
+    1) FeaturedPostHero  →  usado na HOME / LISTAGEM como “card” destacado.
+       – Foto em background (cover) com overlay escuro e texto sobre a imagem.
+
+    2) BlogPostHero      →  usado dentro da página do post.
+       – Layout empilhado: título ▸ descrição ▸ autor + data ▸ imagem (na base).
+
+    Ambas leem os mesmos campos do Contentful e exibem “live‑updates”.
+----------------------------------------------------------------------------- */
+
 import {
   useContentfulInspectorMode,
   useContentfulLiveUpdates,
@@ -7,89 +19,120 @@ import {
 import { useTranslation } from 'react-i18next';
 import { twMerge } from 'tailwind-merge';
 
-import { ArticleAuthor } from '@src/components/features/article/ArticleAuthor';
-import { ArticleLabel } from '@src/components/features/article/ArticleLabel';
-import { CtfImage } from '@src/components/features/contentful';
+import { ArticleAuthor } from './ArticleAuthor';
+import { ArticleLabel } from './ArticleLabel';
+import { CtfImage } from '../contentful';
 import { FormatDate } from '@src/components/shared/format-date';
 import { PageBlogPostFieldsFragment } from '@src/lib/__generated/sdk';
 
+/* -------------------------------------------------------------------------- */
+/*                                   TYPES                                    */
+/* -------------------------------------------------------------------------- */
 interface ArticleHeroProps {
   article: PageBlogPostFieldsFragment;
+  /** Usa o layout com imagem de fundo e overlay                       */
   isFeatured?: boolean;
-  isReversedLayout?: boolean;
-  locale?: string;
 }
 
-export const ArticleHero = ({
-  article,
-  isFeatured,
-  isReversedLayout = false,
-}: ArticleHeroProps) => {
+/* -------------------------------------------------------------------------- */
+/*                              POST EM DESTAQUE                            */
+/* -------------------------------------------------------------------------- */
+const FeaturedPostHero = ({ article }: { article: PageBlogPostFieldsFragment }) => {
   const { t } = useTranslation();
+  const inspectorProps = useContentfulInspectorMode({ entryId: article.sys.id });
+  const { title, shortDescription } = useContentfulLiveUpdates(article);
+
+  return (
+    <section
+      className="relative mx-auto my-8 w-full max-w-screen-xl overflow-hidden rounded-2xl"
+      {...inspectorProps({ fieldId: 'featuredImage' })}
+    >
+      {article.featuredImage && (
+        <CtfImage
+          nextImageProps={{
+            fill: true,
+            priority: true,
+            className: 'object-cover',
+            sizes: undefined,
+          }}
+          {...article.featuredImage}
+        />
+      )}
+
+      {/* overlay + conteúdo */}
+      <div className="relative z-10 flex h-[40vh] items-center justify-center bg-black/50 px-6 py-8 text-center md:h-[30vh] md:px-12">
+        <div className="max-w-3xl">
+          <h1 className="displaySecondary leading-tight text-neutral-50">{title}</h1>
+
+          {shortDescription && (
+            <p className="mt-4 text-lg text-neutral-200 md:mt-6 md:text-2xl">{shortDescription}</p>
+          )}
+        </div>
+
+        <ArticleLabel className="absolute left-4 top-4 bg-brand-primary-600">
+          {t('article.featured')}
+        </ArticleLabel>
+      </div>
+    </section>
+  );
+};
+
+/* -------------------------------------------------------------------------- */
+/*                                BLOG POST HERO                              */
+/* -------------------------------------------------------------------------- */
+const BlogPostHero = ({ article }: { article: PageBlogPostFieldsFragment }) => {
   const inspectorProps = useContentfulInspectorMode({ entryId: article.sys.id });
   const { title, shortDescription, publishedDate } = useContentfulLiveUpdates(article);
 
   return (
-    <div
-      className={twMerge(
-        `mx-auto flex max-w-screen-xl flex-col overflow-hidden`,
-        isReversedLayout ? 'mx-auto max-w-screen-lg lg:flex-col-reverse' : 'lg:flex-row',
-      )}
-    >
-      <div className="flex-1 basis-1/2" {...inspectorProps({ fieldId: 'featuredImage' })}>
-        {article.featuredImage && (
+    <section className="mx-auto my-8 flex max-w-screen-xl flex-col overflow-hidden lg:max-w-screen-lg">
+      {/* TEXTO ----------------------------------------------------------- */}
+      <div className="px-4 py-6 lg:px-0 lg:py-12">
+        <h1 className="displaySecondary " {...inspectorProps({ fieldId: 'title' })}>
+          {title}
+        </h1>
+
+        {shortDescription && (
+          <p
+            className="bodySecondary mt-2 text-brand-primary-600"
+            {...inspectorProps({ fieldId: 'shortDescription' })}
+          >
+            {shortDescription}
+          </p>
+        )}
+
+        {/* Autor + Data */}
+        <div className="mt-6 flex flex-wrap items-center">
+          <ArticleAuthor article={article} />
+
+          <span
+            className="bodyTertiary textSubtle ml-auto pl-2"
+            {...inspectorProps({ fieldId: 'publishedDate' })}
+          >
+            <FormatDate date={publishedDate} />
+          </span>
+        </div>
+      </div>
+
+      {/* IMAGEM ---------------------------------------------------------- */}
+      {article.featuredImage && (
+        <div {...inspectorProps({ fieldId: 'featuredImage' })}>
           <CtfImage
             nextImageProps={{
-              className: 'w-full rounded-2xl object-cover object-center h-[40vh]',
+              className: 'h-[40vh] w-full rounded-2xl object-cover object-center',
               priority: true,
               sizes: undefined,
             }}
             {...article.featuredImage}
           />
-        )}
-      </div>
-
-      <div className="relative mx-auto flex max-w-screen-lg flex-1 basis-1/2 flex-col justify-center px-4 py-6 lg:py-12">
-        <div className="mt-8">
-          <h1 {...inspectorProps({ fieldId: 'title' })}>{title}</h1>
-          {shortDescription && (
-            <p className="bodySecondary mt-2" {...inspectorProps({ fieldId: 'shortDescription' })}>
-              {shortDescription}
-            </p>
-          )}
         </div>
-        <div
-          className={twMerge('bodySecondary textSubtle mt-2', isReversedLayout ? 'lg:hidden' : '')}
-          {...inspectorProps({ fieldId: 'publishedDate' })}
-        >
-          <FormatDate date={publishedDate} />
-        </div>
-        <div className="mb-2 mt-8 flex flex-wrap items-center">
-          <ArticleAuthor article={article} />
-          {isFeatured && (
-            <>
-              {/* @ts-ignore */}
-              <ArticleLabel
-                className={twMerge(
-                  'ml-auto bg-neutral-700 pl-2 lg:absolute lg:top-8 xl:top-12',
-                  isReversedLayout ? 'lg:left-6 xl:left-12' : 'lg:right-6 xl:right-12',
-                )}
-              >
-                {t('article.featured')}
-              </ArticleLabel>
-            </>
-          )}
-          <div
-            className={twMerge(
-              'bodyTertiary textSubtle ml-auto hidden pl-2',
-              isReversedLayout ? 'lg:block' : '',
-            )}
-            {...inspectorProps({ fieldId: 'publishedDate' })}
-          >
-            <FormatDate date={publishedDate} />
-          </div>
-        </div>
-      </div>
-    </div>
+      )}
+    </section>
   );
 };
+
+/* -------------------------------------------------------------------------- */
+/*                            PUBLIC WRAPPER COMPONENT                        */
+/* -------------------------------------------------------------------------- */
+export const ArticleHero = ({ article, isFeatured = false }: ArticleHeroProps) =>
+  isFeatured ? <FeaturedPostHero article={article} /> : <BlogPostHero article={article} />;

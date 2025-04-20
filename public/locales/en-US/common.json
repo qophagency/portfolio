@@ -20,5 +20,9 @@
   "notFound": {
     "title": "Page not found",
     "description": "This page doesn't seem to exist. <0>Click here</0> to go back the homepage."
+  },
+  "hero": {
+    "title": "creating experiences that conect, comove and captvate",
+    "description": "desde 2018 ajudando marcas a criarem e validarem produtos inovadores e acessíveis"
   }
 }

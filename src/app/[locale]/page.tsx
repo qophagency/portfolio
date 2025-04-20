@@ -77,10 +77,7 @@ export default async function Page({ params: { locale } }: LandingPageProps) {
       {/* @ts-ignore */}
       <TranslationsProvider locale={locale} resources={resources}>
         <Container>
-          <Hero
-            title="criando experiências que conectam, comovem e cativam"
-            description="desde 2018 ajudando marcas a criarem e validarem produtos inovadores e acessíveis"
-          />
+          <Hero />
         </Container>
 
         {/* Tutorial: contentful-and-the-starter-template.md */}
@@ -100,7 +97,7 @@ export default async function Page({ params: { locale } }: LandingPageProps) {
         </Container>
         <Container>
           <Link href={`/${page.featuredBlogPost.slug}`}>
-            <ArticleHero article={page.featuredBlogPost} />
+            <ArticleHero article={page.featuredBlogPost} isFeatured />
           </Link>
         </Container>
       </TranslationsProvider>
