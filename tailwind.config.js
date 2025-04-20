@@ -151,6 +151,9 @@ module.exports = {
         ".bodyContent": {
           "@apply font-body text-xl text-neutrals-900 leading-[1.2] space-y-8": {},
         },
+        ".displayPrimary": {
+          "@apply font-heading text-4xl md:text-[72px] text-neutrals-900 leading-[1.0] font-medium": {},
+        },
         ".textSubtle": {
           "@apply text-neutrals-600": {},
         },

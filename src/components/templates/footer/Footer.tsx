@@ -9,14 +9,14 @@ export const Footer = () => {
   const { t } = useTranslation();
 
   return (
-    <footer className="my-10 w-full">
-      <Container className="w-full rounded-3xl bg-neutral-200 p-16">
-        <div className="flex flex-row items-center justify-between gap-24">
+    <footer className="mb-4 mt-10 w-full px-4">
+      <Container className="w-full rounded-3xl bg-neutral-200 p-4 md:p-16">
+        <div className="flex flex-col items-center justify-between gap-8 md:flex-row md:gap-24">
           <div className="max-w-xl">
-            <h2 className="h4 mb-4 text-6xl">{t('footer.aboutUs')}</h2>
+            <h2 className="h4 mb-4 text-4xl md:text-6xl">{t('footer.aboutUs')}</h2>
             {/* <div className="max-w-4xl">{t('footer.description')}</div> */}
           </div>
-          <button className="rounded-xl border border-brand-primary-500 py-4 px-8 text-2xl font-medium hover:bg-brand-primary-25 hover:text-brand-primary-600">
+          <button className="w-full rounded-xl border border-brand-primary-500 px-8 py-4 text-2xl font-medium hover:bg-brand-primary-25 hover:text-brand-primary-600 md:w-auto">
             contato
           </button>
         </div>
