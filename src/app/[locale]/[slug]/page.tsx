@@ -108,7 +108,12 @@ export default async function Page({ params: { locale, slug } }: BlogPageProps) 
       {relatedPosts && (
         <Container className="mt-8 max-w-5xl">
           <h2 className="mb-4 md:mb-6">{t('article.relatedArticles')}</h2>
-          <ArticleTileGrid className="md:grid-cols-2" articles={relatedPosts} />
+          <ArticleTileGrid
+            className="w-full md:grid-cols-2"
+            articles={relatedPosts}
+            inline
+            simpleTile
+          />
         </Container>
       )}
     </>
