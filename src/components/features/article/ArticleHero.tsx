@@ -87,14 +87,14 @@ const BlogPostHero = ({ article }: { article: PageBlogPostFieldsFragment }) => {
   return (
     <section className="mx-auto my-8 flex max-w-screen-xl flex-col overflow-hidden lg:max-w-screen-lg">
       {/* TEXTO ----------------------------------------------------------- */}
-      <div className="px-4 py-6 lg:px-0 lg:py-12">
+      <div className="mx-auto max-w-screen-lg px-0 py-6 sm:px-4 lg:px-0 lg:py-12">
         <h1 className="displaySecondary " {...inspectorProps({ fieldId: 'title' })}>
           {title}
         </h1>
 
         {shortDescription && (
           <p
-            className="bodySecondary mt-2 text-brand-primary-600"
+            className="bodySecondary textSubtle mt-4 md:mt-6"
             {...inspectorProps({ fieldId: 'shortDescription' })}
           >
             {shortDescription}
@@ -102,7 +102,7 @@ const BlogPostHero = ({ article }: { article: PageBlogPostFieldsFragment }) => {
         )}
 
         {/* Autor + Data */}
-        <div className="mt-6 flex flex-wrap items-center">
+        <div className="mt-4 flex flex-wrap items-center md:mt-6">
           <ArticleAuthor article={article} />
 
           <span
