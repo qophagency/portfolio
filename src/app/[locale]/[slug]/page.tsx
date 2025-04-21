@@ -102,13 +102,13 @@ export default async function Page({ params: { locale, slug } }: BlogPageProps) 
       <Container>
         <ArticleHero article={blogPost} />
       </Container>
-      <Container className="mt-8 max-w-4xl">
+      <Container className="mt-4 max-w-4xl md:mt-8">
         <ArticleContent article={blogPost} />
       </Container>
       {relatedPosts && (
         <Container className="mt-8 max-w-5xl">
           <h2 className="mb-4 md:mb-6">{t('article.relatedArticles')}</h2>
-          <ArticleTileGrid className="md:grid-cols-2" articles={relatedPosts} />
+          <ArticleTileGrid className="" articles={relatedPosts} inline simpleTile />
         </Container>
       )}
     </>
