@@ -85,9 +85,9 @@ const BlogPostHero = ({ article }: { article: PageBlogPostFieldsFragment }) => {
   const { title, shortDescription, publishedDate } = useContentfulLiveUpdates(article);
 
   return (
-    <section className="mx-auto my-8 flex max-w-screen-xl flex-col overflow-hidden lg:max-w-screen-lg">
+    <section className="mx-auto my-8 flex max-w-4xl flex-col overflow-hidden">
       {/* TEXTO ----------------------------------------------------------- */}
-      <div className="mx-auto max-w-screen-lg px-0 py-6 sm:px-4 lg:px-0 lg:py-12">
+      <div className="mx-auto w-full px-0 py-6 sm:px-4 lg:px-0 lg:py-12">
         <h1 className="displaySecondary " {...inspectorProps({ fieldId: 'title' })}>
           {title}
         </h1>

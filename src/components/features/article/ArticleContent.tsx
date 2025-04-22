@@ -36,7 +36,7 @@ export const ArticleContent = ({ article }: ArticleContentProps) => {
     : undefined;
 
   return (
-    <div {...inspectorProps({ fieldId: 'content' })}>
+    <div className="max-w-screen-lg" {...inspectorProps({ fieldId: 'content' })}>
       <CtfRichText json={content?.json} links={richTextLinks} />
     </div>
   );

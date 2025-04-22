@@ -67,7 +67,7 @@ const contentfulBaseRichTextOptions = ({ links }: ContentfulRichTextInterface): 
 /* -------------------------------------------------------------------------- */
 
 export const CtfRichText = ({ json, links }: ContentfulRichTextInterface) => (
-  <article className="bodyContent max-w-none">
+  <article className="bodyContent">
     {documentToReactComponents(json, contentfulBaseRichTextOptions({ json, links }))}
   </article>
 );
