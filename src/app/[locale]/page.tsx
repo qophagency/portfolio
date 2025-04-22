@@ -86,7 +86,7 @@ export default async function Page({ params: { locale } }: LandingPageProps) {
         {/*  <div className="my-5 bg-colorTextLightest p-5 text-colorBlueLightest">{page.greeting}</div>*/}
         {/*</Container>*/}
 
-        <Container className="my-8  max-w-screen-xl items-center justify-center md:mb-10 lg:mb-16">
+        <Container className="my-8  max-w-screen-2xl items-center justify-center md:mb-10 lg:mb-16">
           <div className="flex w-full items-center justify-center py-8">
             <h2 className="mb-4 text-4xl md:mb-6">{t('landingPage.latestArticles')}</h2>
           </div>
@@ -95,7 +95,7 @@ export default async function Page({ params: { locale } }: LandingPageProps) {
             articles={posts}
           />
         </Container>
-        <Container>
+        <Container className="hidden">
           <Link href={`/${page.featuredBlogPost.slug}`}>
             <ArticleHero article={page.featuredBlogPost} isFeatured />
           </Link>

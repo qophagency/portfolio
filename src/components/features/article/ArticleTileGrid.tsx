@@ -58,12 +58,12 @@ export const ArticleTileGrid = ({
   return (
     <div {...props} className={twMerge('w-full', className)}>
       {/* Mobile: 1 col */}
-      <div className="flex flex-col gap-4 md:hidden">
+      <div className="flex flex-col gap-8 md:hidden">
         {articles.map(article => article && <ArticleTile key={article.slug} article={article} />)}
       </div>
 
       {/* Desktop: 2 col com offset */}
-      <div className="hidden gap-4 md:flex md:flex-row">
+      <div className="hidden gap-8 md:flex md:flex-row">
         <div className="flex w-1/2 flex-col gap-24">
           {leftCol.map(article => article && <ArticleTile key={article.slug} article={article} />)}
         </div>
