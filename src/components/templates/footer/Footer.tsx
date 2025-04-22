@@ -16,9 +16,11 @@ export const Footer = () => {
             <h2 className="h4 mb-4 text-4xl md:text-6xl">{t('footer.aboutUs')}</h2>
             {/* <div className="max-w-4xl">{t('footer.description')}</div> */}
           </div>
-          <button className="w-full rounded-xl border border-brand-primary-500 px-8 py-4 text-2xl font-medium hover:bg-brand-primary-25 hover:text-brand-primary-600 md:w-auto">
-            contato
-          </button>
+          <Link target="_blank" href="https://www.linkedin.com/in/ryendelrocha/">
+            <button className="w-full rounded-xl border border-brand-primary-500 px-8 py-4 text-2xl font-medium hover:bg-brand-primary-25 hover:text-brand-primary-600 md:w-auto">
+              LinkedIn
+            </button>
+          </Link>
         </div>
         {/* <div className="mt-8 bodySecondary">
           {t('footer.powerBy')}{' '}
